@@ -3,7 +3,7 @@ import Pagination from "@material-ui/lab/Pagination";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import "./customPagination.css";
 
-function CustomPagination({ setPage, numOfPages = 10, page }) {
+function CustomPagination({ setPage, numOfPages, page }) {
   const darkTheme = createMuiTheme({
     palette: {
       type: "dark",

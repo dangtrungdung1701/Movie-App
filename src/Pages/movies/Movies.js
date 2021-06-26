@@ -4,7 +4,6 @@ import CardMovie from "../../Components/cardItem/CardMovie";
 import Loading from "../../Components/loadingPage/Loading";
 import CustomPagination from "../../Components/pagination/CustomPagination";
 import Error from "../../Components/error/Error";
-// import "./movies.css";
 
 function Movies() {
   require("dotenv").config();
@@ -13,6 +12,7 @@ function Movies() {
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [error, setError] = useState(false);
+  const [numberOfPage, setNumberOfPage] = useState(0);
 
   const fetchTrending = async () => {
     const api_key = process.env.REACT_APP_API_KEY;
@@ -21,6 +21,7 @@ function Movies() {
         `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&page=${page}`
       );
       setMovies(data.results);
+      setNumberOfPage(data.total_pages);
     } catch (err) {
       setError(true);
     } finally {
@@ -42,7 +43,11 @@ function Movies() {
       {!isLoading ? (
         !error ? (
           <div className="pagination--top">
-            <CustomPagination setPage={setPage} page={page} />
+            <CustomPagination
+              setPage={setPage}
+              page={page}
+              numOfPages={numberOfPage}
+            />
           </div>
         ) : null
       ) : null}
@@ -55,8 +60,8 @@ function Movies() {
                   key={movie.id}
                   poster={movie.poster_path}
                   title={movie.title}
-                  release={movie.release_date}
-                  type={movie.media_type || "Movies"}
+                  release={movie.release_date || "Update Later"}
+                  type={"Movies"}
                   vote={movie.vote_average ? movie.vote_average : 6}
                 />
               );
@@ -71,7 +76,11 @@ function Movies() {
       {!isLoading ? (
         !error ? (
           <div className="pagination--bottom">
-            <CustomPagination setPage={setPage} page={page} />
+            <CustomPagination
+              setPage={setPage}
+              page={page}
+              numOfPages={numberOfPage}
+            />
           </div>
         ) : null
       ) : null}

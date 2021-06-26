@@ -12,6 +12,7 @@ function Series() {
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [error, setError] = useState(false);
+  const [numberOfPage, setNumberOfPage] = useState(0);
 
   const fetchTrending = async () => {
     const api_key = process.env.REACT_APP_API_KEY;
@@ -20,6 +21,7 @@ function Series() {
         `https://api.themoviedb.org/3/discover/tv?api_key=${api_key}&page=${page}`
       );
       setSeries(data.results);
+      setNumberOfPage(data.total_pages);
     } catch (err) {
       setError(true);
     } finally {
@@ -41,7 +43,11 @@ function Series() {
       {!isLoading ? (
         !error ? (
           <div className="pagination--top">
-            <CustomPagination setPage={setPage} page={page} />
+            <CustomPagination
+              setPage={setPage}
+              page={page}
+              numOfPages={numberOfPage}
+            />
           </div>
         ) : null
       ) : null}
@@ -54,8 +60,8 @@ function Series() {
                   key={serie.id}
                   poster={serie.poster_path}
                   title={serie.name}
-                  release={serie.first_air_date}
-                  type={serie.media_type || "TV Series"}
+                  release={serie.first_air_date || "Update Later"}
+                  type={"TV Series"}
                   vote={serie.vote_average ? serie.vote_average : 6}
                 />
               );
@@ -70,7 +76,11 @@ function Series() {
       {!isLoading ? (
         !error ? (
           <div className="pagination--bottom">
-            <CustomPagination setPage={setPage} page={page} />
+            <CustomPagination
+              setPage={setPage}
+              page={page}
+              numOfPages={numberOfPage}
+            />
           </div>
         ) : null
       ) : null}

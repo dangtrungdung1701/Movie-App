@@ -13,6 +13,7 @@ function Trending() {
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [error, setError] = useState(false);
+  const [numberOfPage, setNumberOfPage] = useState(0);
 
   const fetchTrending = async () => {
     const api_key = process.env.REACT_APP_API_KEY;
@@ -21,6 +22,7 @@ function Trending() {
         `https://api.themoviedb.org/3/trending/all/day?api_key=${api_key}&page=${page}`
       );
       setTrendingMovies(data.results);
+      setNumberOfPage(data.total_pages);
     } catch (err) {
       setError(true);
     } finally {
@@ -42,7 +44,11 @@ function Trending() {
       {!isLoading ? (
         !error ? (
           <div className="pagination--top">
-            <CustomPagination setPage={setPage} page={page} />
+            <CustomPagination
+              setPage={setPage}
+              page={page}
+              numOfPages={numberOfPage}
+            />
           </div>
         ) : null
       ) : null}
@@ -56,7 +62,9 @@ function Trending() {
                   poster={trendingMovie.poster_path}
                   title={trendingMovie.title || trendingMovie.name}
                   release={
-                    trendingMovie.release_date || trendingMovie.first_air_date
+                    trendingMovie.release_date ||
+                    trendingMovie.first_air_date ||
+                    "Update Later"
                   }
                   type={trendingMovie.media_type}
                   vote={
@@ -75,7 +83,11 @@ function Trending() {
       {!isLoading ? (
         !error ? (
           <div className="pagination--bottom">
-            <CustomPagination setPage={setPage} page={page} />
+            <CustomPagination
+              setPage={setPage}
+              page={page}
+              numOfPages={numberOfPage}
+            />
           </div>
         ) : null
       ) : null}
