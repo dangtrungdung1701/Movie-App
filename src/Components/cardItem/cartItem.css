@@ -1,0 +1,49 @@
+.card {
+  display: flex;
+  flex-direction: column;
+
+  width: 250px;
+  padding: 5px;
+  margin: 5px 0;
+
+  background-color: #282c34;
+
+  border-radius: 10px;
+
+  position: relative;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+  background-color: white;
+  color: black;
+}
+
+.card__image {
+  border-radius: 10px;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
+}
+.card__title {
+  width: 100%;
+  text-align: center;
+
+  font-size: 20px;
+  font-weight: 300;
+
+  padding: 8px 0;
+}
+
+.card__subtitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0px 5px;
+
+  font-size: 15px;
+  font-weight: 50;
+}

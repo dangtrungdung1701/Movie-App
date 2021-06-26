@@ -1,0 +1,20 @@
+.header {
+  width: 100%;
+  height: auto;
+  padding: 10px 20px;
+  background-color: #0c2738;
+
+  display: flex;
+  justify-content: center;
+
+  position: fixed;
+  top: 0;
+  z-index: 99;
+}
+.header__title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+
+  cursor: pointer;
+}
