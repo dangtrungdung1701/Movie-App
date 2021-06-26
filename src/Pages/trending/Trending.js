@@ -38,7 +38,7 @@ function Trending() {
     <div className="trending">
       {!error ? (
         <div className="page-title">
-          <h2>RENDING TODAY 🔥</h2>
+          <h2>TRENDING TODAY 🔥</h2>
         </div>
       ) : null}
       {!isLoading ? (
