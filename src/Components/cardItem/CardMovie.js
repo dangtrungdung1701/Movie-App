@@ -1,10 +1,15 @@
 import React from "react";
 import { img_300, unavailable } from "../../config/Config";
 import "./cartItem.css";
+import Badge from "@material-ui/core/Badge";
 
-function CardMovie({ poster, title, release, type }) {
+function CardMovie({ poster, title, release, type, vote }) {
   return (
     <div className="card">
+      <Badge
+        badgeContent={vote}
+        color={vote >= 6 ? "primary" : "secondary"}
+      ></Badge>
       <img
         src={poster ? `${img_300}/${poster}` : unavailable}
         alt={title}

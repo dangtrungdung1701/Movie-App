@@ -3,13 +3,13 @@ import Pagination from "@material-ui/lab/Pagination";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import "./customPagination.css";
 
-function CustomPagination({ setPage, numOfPages = 10 }) {
+function CustomPagination({ setPage, numOfPages = 10, page }) {
   const darkTheme = createMuiTheme({
     palette: {
       type: "dark",
     },
   });
-  const handleChangePage = (page) => {
+  const handleChangePage = (e, page) => {
     setPage(page);
     window.scroll(0, 0);
   };
@@ -17,7 +17,8 @@ function CustomPagination({ setPage, numOfPages = 10 }) {
     <div className="pagination">
       <ThemeProvider theme={darkTheme}>
         <Pagination
-          onChange={(e) => handleChangePage(e.target.textContent)}
+          page={page}
+          onChange={(e, page) => handleChangePage(e, page)}
           count={numOfPages}
         />
       </ThemeProvider>

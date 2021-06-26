@@ -4,7 +4,7 @@ import CardMovie from "../../Components/cardItem/CardMovie";
 import Loading from "../../Components/loadingPage/Loading";
 import CustomPagination from "../../Components/pagination/CustomPagination";
 import Error from "../../Components/error/Error";
-import "./movies.css";
+// import "./movies.css";
 
 function Movies() {
   require("dotenv").config();
@@ -39,7 +39,13 @@ function Movies() {
           <h2>MOVIES 📽️</h2>
         </div>
       ) : null}
-
+      {!isLoading ? (
+        !error ? (
+          <div className="pagination--top">
+            <CustomPagination setPage={setPage} page={page} />
+          </div>
+        ) : null
+      ) : null}
       <div className="body">
         {!isLoading ? (
           !error ? (
@@ -51,6 +57,7 @@ function Movies() {
                   title={movie.title}
                   release={movie.release_date}
                   type={movie.media_type || "Movies"}
+                  vote={movie.vote_average ? movie.vote_average : 6}
                 />
               );
             })
@@ -64,7 +71,7 @@ function Movies() {
       {!isLoading ? (
         !error ? (
           <div className="pagination--bottom">
-            <CustomPagination setPage={setPage} />
+            <CustomPagination setPage={setPage} page={page} />
           </div>
         ) : null
       ) : null}

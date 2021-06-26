@@ -39,6 +39,13 @@ function Trending() {
           <h2>TRENDING TODAY 🔥</h2>
         </div>
       ) : null}
+      {!isLoading ? (
+        !error ? (
+          <div className="pagination--top">
+            <CustomPagination setPage={setPage} page={page} />
+          </div>
+        ) : null
+      ) : null}
       <div className="body">
         {!isLoading ? (
           !error ? (
@@ -52,6 +59,9 @@ function Trending() {
                     trendingMovie.release_date || trendingMovie.first_air_date
                   }
                   type={trendingMovie.media_type}
+                  vote={
+                    trendingMovie.vote_average ? trendingMovie.vote_average : 6
+                  }
                 />
               );
             })
@@ -65,7 +75,7 @@ function Trending() {
       {!isLoading ? (
         !error ? (
           <div className="pagination--bottom">
-            <CustomPagination setPage={setPage} />
+            <CustomPagination setPage={setPage} page={page} />
           </div>
         ) : null
       ) : null}
