@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
@@ -20,10 +20,14 @@ const useStyles = makeStyles({
 });
 
 export default function NavBar() {
-  const classes = useStyles();
-  const [value, setValue] = React.useState("trends");
-
   const history = useHistory();
+  const classes = useStyles();
+  const [value, setValue] = useState(history.location.pathname.slice(1));
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   useEffect(() => {
     switch (value) {
       case "trends":
@@ -41,9 +45,6 @@ export default function NavBar() {
       default:
     }
   }, [value, history]);
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
 
   return (
     <BottomNavigation
