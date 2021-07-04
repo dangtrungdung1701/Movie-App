@@ -5,3 +5,7 @@
   align-items: center;
   justify-content: center;
 }
+
+.MuiPagination-ul {
+  /* flex-wrap: nowrap !important; */
+}

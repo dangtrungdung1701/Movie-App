@@ -15,7 +15,9 @@ function CardMovie({ poster, title, release, type, vote }) {
         alt={title}
         className="card__image"
       />
-      <b className="card__title">{title}</b>
+      <b title={title} className="card__title">
+        {title}
+      </b>
       <div className="card__subtitle">
         <span>{type === "tv" ? "TV Series" : type}</span>
         <span>{release}</span>
