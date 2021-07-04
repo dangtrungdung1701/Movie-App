@@ -7,11 +7,14 @@ import Trending from "./Pages/trending/Trending";
 import Movies from "./Pages/movies/Movies";
 import Series from "./Pages/series/Series";
 import Search from "./Pages/search/Search";
+import { createBrowserHistory } from "history";
 
 function App() {
+  const history = createBrowserHistory();
+  console.log(history);
   return (
     <div className="App">
-      <BrowserRouter>
+      <BrowserRouter history={history}>
         <Header />
         <Container>
           <Switch>

@@ -47,8 +47,6 @@ export default function NavBar() {
       default:
     }
   }, [value, history]);
-  console.log("a:", value);
-  console.log("h:", history);
   return (
     <BottomNavigation
       value={!value ? "trends" : value}
