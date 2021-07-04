@@ -5,13 +5,13 @@ import Loading from "../../Components/loadingPage/Loading";
 import CustomPagination from "../../Components/pagination/CustomPagination";
 import "./trending.css";
 import Error from "../../Components/error/Error";
-
+import Store from "../../Storage/Storage";
 function Trending() {
   require("dotenv").config();
 
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(Store.get());
   const [error, setError] = useState(false);
   const [numberOfPage, setNumberOfPage] = useState(0);
 

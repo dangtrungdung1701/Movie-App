@@ -2,7 +2,7 @@ import React from "react";
 import Pagination from "@material-ui/lab/Pagination";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import "./customPagination.css";
-
+import Store from "../../Storage/Storage";
 function CustomPagination({ setPage, numOfPages, page }) {
   const darkTheme = createMuiTheme({
     palette: {
@@ -10,6 +10,7 @@ function CustomPagination({ setPage, numOfPages, page }) {
     },
   });
   const handleChangePage = (e, page) => {
+    Store.set(page);
     setPage(page);
     window.scroll(0, 0);
   };

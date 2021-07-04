@@ -8,6 +8,7 @@ import TvIcon from "@material-ui/icons/Tv";
 import SearchIcon from "@material-ui/icons/Search";
 import "./navbar.css";
 import { useHistory } from "react-router-dom";
+import Store from "../../Storage/Storage";
 
 const useStyles = makeStyles({
   root: {
@@ -25,6 +26,7 @@ export default function NavBar() {
   const [value, setValue] = useState(history.location.pathname.slice(1));
 
   const handleChange = (event, newValue) => {
+    Store.set(1);
     setValue(newValue);
   };
 
@@ -45,10 +47,11 @@ export default function NavBar() {
       default:
     }
   }, [value, history]);
-
+  console.log("a:", value);
+  console.log("h:", history);
   return (
     <BottomNavigation
-      value={value}
+      value={!value ? "trends" : value}
       onChange={handleChange}
       className={classes.root}
     >
