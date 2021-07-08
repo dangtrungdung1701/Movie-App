@@ -83,7 +83,7 @@ function Movies() {
                   poster={movie.poster_path}
                   title={movie.title}
                   release={movie.release_date || "Update Later"}
-                  type={"Movies"}
+                  type="movie"
                   vote={movie.vote_average ? movie.vote_average : 6}
                   id={movie.id}
                 />

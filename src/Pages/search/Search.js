@@ -17,7 +17,7 @@ import Loading from "../../Components/loadingPage/Loading";
 
 const Search = () => {
   const [type, setType] = useState(0);
-  const [searchText, setSearchText] = useState("a");
+  const [searchText, setSearchText] = useState("");
   const [content, setContent] = useState([]);
   const [numberOfPage, setNumberOfPage] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -53,7 +53,9 @@ const Search = () => {
 
   useEffect(() => {
     window.scroll(0, 0);
-    fetchSearch();
+    if (searchText) {
+      fetchSearch();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [type, page]);
 
@@ -106,8 +108,8 @@ const Search = () => {
           ) : null
         ) : null}
         <div className="body">
-          {!isLoading ? (
-            !error ? (
+          {searchText ? (
+            !isLoading ? (
               content.map((movie) => {
                 return (
                   <CardMovie
@@ -119,18 +121,16 @@ const Search = () => {
                       movie.release_date ||
                       "Update later"
                     }
-                    type={type ? "TV Series" : "Movie"}
+                    type={type ? "tv" : "movie"}
                     vote={movie.vote_average ? movie.vote_average : 6}
                     id={movie.id}
                   />
                 );
               })
             ) : (
-              <Error />
+              <Loading />
             )
-          ) : (
-            <Loading />
-          )}
+          ) : null}
           {searchText &&
             !content &&
             (type ? <h2>No Series Found</h2> : <h2>No Movies Found</h2>)}
