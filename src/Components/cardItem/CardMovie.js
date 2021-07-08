@@ -1,15 +1,13 @@
 import React from "react";
 import { img_300, unavailable } from "../../config/Config";
-import "./cartItem.css";
 import Badge from "@material-ui/core/Badge";
+import ContentModal from "../../Components/contentModal/ContentModal";
+import "./cartItem.css";
 
-function CardMovie({ poster, title, release, type, vote }) {
+function CardMovie({ poster, title, release, type, vote, id }) {
   return (
-    <div className="card">
-      <Badge
-        badgeContent={vote}
-        color={vote >= 6 ? "primary" : "secondary"}
-      ></Badge>
+    <ContentModal media_type={type} id={id}>
+      <Badge badgeContent={vote} color={vote >= 6 ? "primary" : "secondary"} />
       <img
         src={poster ? `${img_300}/${poster}` : unavailable}
         alt={title}
@@ -22,7 +20,7 @@ function CardMovie({ poster, title, release, type, vote }) {
         <span>{type === "tv" ? "TV Series" : type}</span>
         <span>{release}</span>
       </div>
-    </div>
+    </ContentModal>
   );
 }
 

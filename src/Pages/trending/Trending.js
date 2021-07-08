@@ -32,6 +32,7 @@ function Trending() {
 
   useEffect(() => {
     fetchTrending();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   return (
@@ -70,6 +71,7 @@ function Trending() {
                   vote={
                     trendingMovie.vote_average ? trendingMovie.vote_average : 6
                   }
+                  id={trendingMovie.id}
                 />
               );
             })

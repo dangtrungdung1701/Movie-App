@@ -1,4 +1,4 @@
-.card {
+.media {
   display: flex;
   flex-direction: column;
 
@@ -18,7 +18,7 @@
   transition: all 0.3s ease-in-out;
 }
 
-.card:hover {
+.media:hover {
   background-color: white;
   color: black;
 }
