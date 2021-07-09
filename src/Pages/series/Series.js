@@ -37,6 +37,7 @@ function Series() {
 
   useEffect(() => {
     window.scroll(0, 0);
+    setIsLoading(true);
     fetchTrending();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, genreforURL]);

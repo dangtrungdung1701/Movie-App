@@ -51,6 +51,7 @@ const Search = () => {
     }
   };
   const handleSearch = () => {
+    setIsLoading(true);
     fetchSearch();
     setPage(1);
   };
@@ -61,7 +62,7 @@ const Search = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [type, page]);
-  console.log(content == false);
+
   return (
     <div>
       <ThemeProvider theme={darkTheme}>
@@ -111,33 +112,35 @@ const Search = () => {
           ) : null
         ) : null}
         <div className="body">
-          {searchText ? (
-            !isLoading ? (
-              content == true ? (
-                content.map((movie) => {
-                  return (
-                    <CardMovie
-                      key={movie.id}
-                      poster={movie.poster_path}
-                      title={movie.name || movie.title}
-                      release={
-                        movie.first_air_date ||
-                        movie.release_date ||
-                        "Update later"
-                      }
-                      type={type ? "tv" : "movie"}
-                      vote={movie.vote_average ? movie.vote_average : 6}
-                      id={movie.id}
-                    />
-                  );
-                })
-              ) : (
-                <Error />
-              )
+          {!isLoading ? (
+            !(content.length === 0) ? (
+              content.map((movie) => {
+                return (
+                  <CardMovie
+                    key={movie.id}
+                    poster={movie.poster_path}
+                    title={movie.name || movie.title}
+                    release={
+                      movie.first_air_date ||
+                      movie.release_date ||
+                      "Update later"
+                    }
+                    type={type ? "tv" : "movie"}
+                    vote={movie.vote_average ? movie.vote_average : 6}
+                    id={movie.id}
+                  />
+                );
+              })
             ) : (
-              <Loading />
+              <Error />
             )
-          ) : null}
+          ) : !searchText ? (
+            <h1 style={{ width: "100%", textAlign: "center" }}>
+              Please enter the movie!!!
+            </h1>
+          ) : (
+            <Loading />
+          )}
         </div>
         {!isLoading ? (
           !error ? (
