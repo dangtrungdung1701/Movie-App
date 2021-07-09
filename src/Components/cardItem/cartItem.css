@@ -2,10 +2,9 @@
   display: flex;
   flex-direction: column;
 
-  width: 250px;
+  width: calc((100% / 4) - 6vw);
   padding: 5px;
-  margin-top: 10px;
-  margin-right: 10px;
+  margin: 20px 3vw;
 
   background-color: #282c34;
 
@@ -51,4 +50,23 @@
 
   font-size: 15px;
   font-weight: 50;
+}
+
+@media only screen and (max-width: 1024px) {
+  .media {
+    width: calc((100% / 3) - 6vw);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .media {
+    width: calc((100% / 2) - 6vw);
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .media {
+    width: calc((100vw / 1) - 20vw);
+    margin: 20px 10vw;
+  }
 }

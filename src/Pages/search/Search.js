@@ -50,7 +50,10 @@ const Search = () => {
       setIsLoading(false);
     }
   };
-
+  const handleSearch = () => {
+    fetchSearch();
+    setPage(1);
+  };
   useEffect(() => {
     window.scroll(0, 0);
     if (searchText) {
@@ -58,7 +61,7 @@ const Search = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [type, page]);
-
+  console.log(content == false);
   return (
     <div>
       <ThemeProvider theme={darkTheme}>
@@ -71,7 +74,7 @@ const Search = () => {
             onChange={(e) => setSearchText(e.target.value)}
           />
           <Button
-            onClick={fetchSearch}
+            onClick={() => handleSearch()}
             variant="contained"
             style={{ marginLeft: 10 }}
           >
@@ -110,30 +113,31 @@ const Search = () => {
         <div className="body">
           {searchText ? (
             !isLoading ? (
-              content.map((movie) => {
-                return (
-                  <CardMovie
-                    key={movie.id}
-                    poster={movie.poster_path}
-                    title={movie.name || movie.title}
-                    release={
-                      movie.first_air_date ||
-                      movie.release_date ||
-                      "Update later"
-                    }
-                    type={type ? "tv" : "movie"}
-                    vote={movie.vote_average ? movie.vote_average : 6}
-                    id={movie.id}
-                  />
-                );
-              })
+              content == true ? (
+                content.map((movie) => {
+                  return (
+                    <CardMovie
+                      key={movie.id}
+                      poster={movie.poster_path}
+                      title={movie.name || movie.title}
+                      release={
+                        movie.first_air_date ||
+                        movie.release_date ||
+                        "Update later"
+                      }
+                      type={type ? "tv" : "movie"}
+                      vote={movie.vote_average ? movie.vote_average : 6}
+                      id={movie.id}
+                    />
+                  );
+                })
+              ) : (
+                <Error />
+              )
             ) : (
               <Loading />
             )
           ) : null}
-          {searchText &&
-            !content &&
-            (type ? <h2>No Series Found</h2> : <h2>No Movies Found</h2>)}
         </div>
         {!isLoading ? (
           !error ? (

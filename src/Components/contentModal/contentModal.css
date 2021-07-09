@@ -11,15 +11,15 @@
 .tagline {
   padding-bottom: 10px;
   align-self: center;
+  font-size: 3vw;
 }
 
 .ContentModal {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: 100%;
   width: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   scrollbar-width: none;
 }
 
@@ -27,14 +27,13 @@
   display: none;
 }
 .ContentModal__about {
-  padding: 10px;
-  width: 95%;
+  width: 100%;
   height: 90%;
   display: flex;
   flex-direction: column;
   font-family: "Roboto", sans-serif;
-  justify-content: space-evenly;
   font-weight: 300;
+  margin-top: 4vh;
 }
 
 .ContentModal__title {
@@ -47,14 +46,14 @@
 
 .ContentModal__description {
   display: flex;
-  height: 40%;
+  min-height: 30%;
   overflow-y: scroll;
   padding: 15px;
   border-radius: 20px;
   scrollbar-width: thin; /* Firefox */
   box-shadow: inset 0 0 5px #000000;
-  text-align: left;
-  font-size: 15px;
+  text-align: justify;
+  font-size: 3vw;
 }
 
 .ContentModal__description::-webkit-scrollbar {
@@ -67,24 +66,33 @@
   }
   .ContentModal__portrait {
     display: flex;
-    width: 38%;
+    width: 30%;
   }
   .ContentModal {
     flex-direction: row;
     justify-content: space-around;
-    padding: 10px 0;
+    overflow: hidden;
   }
 
   .ContentModal__about {
     width: 58%;
-    padding: 0;
+    padding: 3vh 0;
     height: 100%;
+    margin: 0;
+    justify-content: space-evenly;
+    overflow-y: auto;
+  }
+  .ContentModal__about::-webkit-scrollbar {
+    display: none;
   }
   .ContentModal__title {
-    font-size: 3.5vw;
+    font-size: 2.8vw;
+  }
+  .tagline {
+    font-size: 2vw;
   }
   .ContentModal__description {
-    font-size: 20px;
+    font-size: 1.5vw;
     text-align: justify;
   }
 }

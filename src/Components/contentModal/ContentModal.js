@@ -135,7 +135,6 @@ export default function TransitionsModal({ children, media_type, id }) {
                   <div>
                     <Carousel id={id} media_type={media_type} />
                   </div>
-
                   <Button
                     variant="contained"
                     startIcon={<YouTubeIcon />}

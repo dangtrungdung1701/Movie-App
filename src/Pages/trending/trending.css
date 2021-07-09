@@ -29,7 +29,15 @@ h2 {
 .body {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
 
   margin-bottom: 20px;
+
+  margin: 0 -24px;
+}
+
+@media (max-width: 600px) {
+  .body {
+    margin: 0 -16px;
+  }
 }
