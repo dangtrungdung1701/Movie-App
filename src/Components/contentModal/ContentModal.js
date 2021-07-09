@@ -9,7 +9,6 @@ import {
   unavailable,
   unavailableLandscape,
 } from "../../config/Config";
-import { Button } from "@material-ui/core";
 import YouTubeIcon from "@material-ui/icons/YouTube";
 import Carousel from "../carousel/Carousel";
 import "./contentModal.css";
@@ -30,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(1, 1, 3),
     outline: "none",
+    padding: "8px",
   },
 }));
 
@@ -129,21 +129,22 @@ export default function TransitionsModal({ children, media_type, id }) {
                   )}
 
                   <span className="ContentModal__description">
-                    {content.overview}
+                    {content.overview ||
+                      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel autem quae veniam corporis, aliquid a molestias eos pariatur ab voluptate sit nemo repudiandae error? Magni, obcaecati. Eligendi excepturi iure beatae."}
                   </span>
 
                   <div>
                     <Carousel id={id} media_type={media_type} />
                   </div>
-                  <Button
-                    variant="contained"
-                    startIcon={<YouTubeIcon />}
-                    color="secondary"
-                    target="__blank"
-                    href={`https://www.youtube.com/watch?v=${video}`}
-                  >
-                    Watch the Trailer
-                  </Button>
+                  <button className="ContentModal__video">
+                    <a
+                      href={`https://www.youtube.com/watch?v=${video}`}
+                      target="__blank"
+                    >
+                      <span> Watch the Trailer</span>
+                      <YouTubeIcon className="icon" />
+                    </a>
+                  </button>
                 </div>
               </div>
             </div>

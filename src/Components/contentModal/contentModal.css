@@ -12,6 +12,7 @@
   padding-bottom: 10px;
   align-self: center;
   font-size: 3vw;
+  margin-bottom: 1.5vh;
 }
 
 .ContentModal {
@@ -42,11 +43,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 1.5vh;
 }
 
 .ContentModal__description {
   display: flex;
-  min-height: 30%;
+  min-height: 25%;
   overflow-y: scroll;
   padding: 15px;
   border-radius: 20px;
@@ -54,12 +56,40 @@
   box-shadow: inset 0 0 5px #000000;
   text-align: justify;
   font-size: 3vw;
+  margin-bottom: 1.5vh;
 }
 
 .ContentModal__description::-webkit-scrollbar {
   display: none;
 }
 
+.ContentModal__video {
+  /* display: block; */
+  margin-top: 1.5vh;
+  min-height: 5vh;
+  z-index: 99;
+  border-radius: 10px;
+  background-color: red;
+}
+
+.ContentModal__video > a {
+  text-decoration: none;
+
+  font-size: 3vw;
+  font-weight: 300;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ContentModal__video > a > span {
+  margin-right: 5px;
+}
+.ContentModal__video > a > .icon {
+  font-size: 5vw;
+}
 @media (min-width: 835px) {
   .ContentModal__landscape {
     display: none;
@@ -94,5 +124,13 @@
   .ContentModal__description {
     font-size: 1.5vw;
     text-align: justify;
+  }
+
+  .ContentModal__video > a {
+    font-size: 1.5vw;
+  }
+
+  .ContentModal__video > a > .icon {
+    font-size: 3vw;
   }
 }
