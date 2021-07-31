@@ -1,16 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import CardMovie from "../../Components/cardItem/CardMovie";
-import Loading from "../../Components/loadingPage/Loading";
-import CustomPagination from "../../Components/pagination/CustomPagination";
-import Error from "../../Components/error/Error";
 import Store from "../../Storage/Storage";
-import Genres from "../../Components/genres/genres";
 import useGenre from "../../hook/useGenres";
+import { Redirect, Route, useRouteMatch } from "react-router-dom";
+import BodyContent from "../../Components/bodyContent/BodyContent";
 
 function Series() {
   require("dotenv").config();
 
+  const { path, url } = useRouteMatch();
   const [genres, setGenres] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [series, setSeries] = useState([]);
@@ -43,73 +41,27 @@ function Series() {
   }, [page, genreforURL]);
 
   return (
-    <div className="series">
-      {!error ? (
-        <div className="page-title">
-          <h2>TV SERIES 📺 </h2>
-        </div>
-      ) : null}
-      {!isLoading ? (
-        !error ? (
-          <Genres
-            type="tv"
-            setGenres={setGenres}
-            setSelectedGenres={setSelectedGenres}
-            genres={genres}
-            selectedGenres={selectedGenres}
-            setPage={setPage}
-          />
-        ) : null
-      ) : null}
-      {!isLoading ? (
-        !error ? (
-          numberOfPage > 1 ? (
-            <div className="pagination--bottom">
-              <CustomPagination
-                setPage={setPage}
-                page={page}
-                numOfPages={numberOfPage}
-              />
-            </div>
-          ) : null
-        ) : null
-      ) : null}
-      <div className="body">
-        {!isLoading ? (
-          !error ? (
-            series.map((serie) => {
-              return (
-                <CardMovie
-                  key={serie.id}
-                  poster={serie.poster_path}
-                  title={serie.name}
-                  release={serie.first_air_date || "Update Later"}
-                  type="tv"
-                  vote={serie.vote_average ? serie.vote_average : 6}
-                  id={serie.id}
-                />
-              );
-            })
-          ) : (
-            <Error />
-          )
-        ) : (
-          <Loading />
-        )}
-      </div>
-      {!isLoading ? (
-        !error ? (
-          numberOfPage > 1 ? (
-            <div className="pagination--bottom">
-              <CustomPagination
-                setPage={setPage}
-                page={page}
-                numOfPages={numberOfPage}
-              />
-            </div>
-          ) : null
-        ) : null
-      ) : null}
+    <div>
+      {path === "/movies"
+        ? () => {
+            return <Redirect from={path} to={`${path}/page=${page}`} />;
+          }
+        : null}
+      <Route path={`${path}/:currentPage`}>
+        <BodyContent
+          isLoading={isLoading}
+          error={error}
+          Movies={series}
+          setPage={setPage}
+          page={page}
+          numberOfPage={numberOfPage}
+          url={url}
+          setGenres={setGenres}
+          setSelectedGenres={setSelectedGenres}
+          genres={genres}
+          selectedGenres={selectedGenres}
+        />
+      </Route>
     </div>
   );
 }

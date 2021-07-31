@@ -14,8 +14,10 @@ import CustomPagination from "../../Components/pagination/CustomPagination";
 import CardMovie from "../../Components/cardItem/CardMovie";
 import Error from "../../Components/error/Error";
 import Loading from "../../Components/loadingPage/Loading";
+import { useRouteMatch } from "react-router-dom";
 
 const Search = () => {
+  const { path, url } = useRouteMatch();
   const [type, setType] = useState(0);
   const [searchText, setSearchText] = useState("");
   const [content, setContent] = useState([]);
@@ -107,6 +109,7 @@ const Search = () => {
                   setPage={setPage}
                   page={page}
                   numOfPages={numberOfPage}
+                  url={path}
                 />
               </div>
             ) : null
@@ -151,6 +154,7 @@ const Search = () => {
                   setPage={setPage}
                   page={page}
                   numOfPages={numberOfPage}
+                  url={path}
                 />
               </div>
             ) : null

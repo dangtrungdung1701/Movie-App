@@ -7,10 +7,12 @@ import Error from "../../Components/error/Error";
 import Store from "../../Storage/Storage";
 import Genres from "../../Components/genres/genres";
 import useGenre from "../../hook/useGenres";
+import { Redirect, Route, useRouteMatch } from "react-router-dom";
+import BodyContent from "../../Components/bodyContent/BodyContent";
 
 function Movies() {
   require("dotenv").config();
-
+  const { path, url } = useRouteMatch();
   const [genres, setGenres] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [movies, setMovies] = useState([]);
@@ -43,73 +45,23 @@ function Movies() {
   }, [page, genreforURL]);
 
   return (
-    <div className="movies">
-      {!error ? (
-        <div className="page-title">
-          <h2>MOVIES 📽️</h2>
-        </div>
-      ) : null}
-      {!isLoading ? (
-        !error ? (
-          <Genres
-            type="movie"
-            setGenres={setGenres}
-            setSelectedGenres={setSelectedGenres}
-            genres={genres}
-            selectedGenres={selectedGenres}
-            setPage={setPage}
-          />
-        ) : null
-      ) : null}
-      {!isLoading ? (
-        !error ? (
-          numberOfPage > 1 ? (
-            <div className="pagination--bottom">
-              <CustomPagination
-                setPage={setPage}
-                page={page}
-                numOfPages={numberOfPage}
-              />
-            </div>
-          ) : null
-        ) : null
-      ) : null}
-      <div className="body">
-        {!isLoading ? (
-          !error ? (
-            movies.map((movie) => {
-              return (
-                <CardMovie
-                  key={movie.id}
-                  poster={movie.poster_path}
-                  title={movie.title}
-                  release={movie.release_date || "Update Later"}
-                  type="movie"
-                  vote={movie.vote_average ? movie.vote_average : 6}
-                  id={movie.id}
-                />
-              );
-            })
-          ) : (
-            <Error />
-          )
-        ) : (
-          <Loading />
-        )}
-      </div>
-      {!isLoading ? (
-        !error ? (
-          numberOfPage > 1 ? (
-            <div className="pagination--bottom">
-              <CustomPagination
-                setPage={setPage}
-                page={page}
-                numOfPages={numberOfPage}
-              />
-            </div>
-          ) : null
-        ) : null
-      ) : null}
+    <div>
+      <Redirect to={`${path}/page=${page}`} />
+      <Route path={`${path}/:currentPage`}>
+        <BodyContent
+          isLoading={isLoading}
+          error={error}
+          Movies={movies}
+          setPage={setPage}
+          page={page}
+          numberOfPage={numberOfPage}
+          url={url}
+          setGenres={setGenres}
+          setSelectedGenres={setSelectedGenres}
+          genres={genres}
+          selectedGenres={selectedGenres}
+        />
+      </Route>
     </div>
   );
 }

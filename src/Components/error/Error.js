@@ -1,12 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./error.css";
 function Error() {
   return (
     <div className="error">
-      <img
-        src="https://www.artzstudio.com/wp-content/uploads/2020/05/404-error-not-found-page-lost-1024x788.png"
-        alt="error"
-      />
+      <div class="err">4</div>
+      <i class="far fa-question-circle fa-spin"></i>
+      <div class="err2">4</div>
+      <div class="msg">
+        Maybe this page moved? Got deleted? Is hiding out in quarantine? Never
+        existed in the first place?
+        <p>
+          Let's go <Link to="/">Home</Link> and try from there.
+        </p>
+      </div>
     </div>
   );
 }

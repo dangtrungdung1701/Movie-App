@@ -1,3 +1,4 @@
+import React from "react";
 import Header from "./Components/header/Header";
 import NavBar from "./Components/navBar/NavBar";
 import { Router, Switch, Route } from "react-router-dom";
@@ -10,19 +11,22 @@ import ErrorPage from "./Pages/error/ErrorPage";
 import { createBrowserHistory } from "history";
 
 import "./App.css";
+import Home from "./Pages/Home/Home";
 
 function App() {
   const history = createBrowserHistory();
+
   return (
     <div className="App">
       <Router history={history}>
         <Header />
         <Container>
           <Switch>
-            <Route path="/" component={Trending} exact />
-            <Route path="/movies" component={Movies} exact />
-            <Route path="/series" component={Series} exact />
-            <Route path="/search" component={Search} exact />
+            <Route path="/" component={Home} exact />
+            <Route path="/trending" component={Trending} />
+            <Route path="/movies" component={Movies} />
+            <Route path="/series" component={Series} />
+            <Route path="/search" component={Search} />
             <Route component={ErrorPage} />
           </Switch>
         </Container>
