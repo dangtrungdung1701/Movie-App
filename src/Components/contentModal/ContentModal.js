@@ -27,13 +27,13 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 10,
     color: "white",
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(1, 1, 3),
     outline: "none",
     padding: "8px",
   },
 }));
 
 export default function TransitionsModal({ children, media_type, id }) {
+  console.log(id);
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [content, setContent] = useState();

@@ -4,6 +4,7 @@ import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import WhatshotIcon from "@material-ui/icons/Whatshot";
 import MovieIcon from "@material-ui/icons/Movie";
+import HomeIcon from "@material-ui/icons/Home";
 import TvIcon from "@material-ui/icons/Tv";
 import SearchIcon from "@material-ui/icons/Search";
 import "./navbar.css";
@@ -33,7 +34,7 @@ export default function NavBar() {
   useEffect(() => {
     switch (value) {
       case "trends":
-        history.push("/");
+        history.push("/trending");
         break;
       case "movies":
         history.push("/movies");
@@ -45,14 +46,21 @@ export default function NavBar() {
         history.push("/search");
         break;
       default:
+        history.push("/");
     }
   }, [value, history]);
   return (
     <BottomNavigation
-      value={!value ? "trends" : value}
+      value={!value ? "home" : value}
       onChange={handleChange}
       className={classes.root}
     >
+      <BottomNavigationAction
+        className="nav__icon"
+        label="Home"
+        value="home"
+        icon={<HomeIcon />}
+      />
       <BottomNavigationAction
         className="nav__icon"
         label="Trending"

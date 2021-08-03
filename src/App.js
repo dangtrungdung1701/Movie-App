@@ -10,6 +10,7 @@ import ErrorPage from "./Pages/error/ErrorPage";
 import { createBrowserHistory } from "history";
 
 import "./App.css";
+import Home from "./Pages/home/Home";
 
 function App() {
   const history = createBrowserHistory();
@@ -19,7 +20,8 @@ function App() {
         <Header />
         <Container>
           <Switch>
-            <Route path="/" component={Trending} exact />
+            <Route path="/" component={Home} exact />
+            <Route path="/trending" component={Trending} />
             <Route path="/movies" component={Movies} exact />
             <Route path="/series" component={Series} exact />
             <Route path="/search" component={Search} exact />
